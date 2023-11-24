@@ -3,7 +3,7 @@
 const Signup = () => {
   return (
     <div>
-      SignOut
+      <h1 className="text-3xl text-center">Sign up</h1>
     </div>
   )
 }
