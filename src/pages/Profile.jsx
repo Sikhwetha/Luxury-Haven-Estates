@@ -7,6 +7,10 @@ import { app } from '../firebase';
 // const UPDATE_AVATAR = 'UPDATE_AVATAR';
 // const updateAvatar = (avatarURL) => ({ type: UPDATE_AVATAR, payload: avatarURL });
 
+// allow read;
+// allow write: if request.resource.size < 2 * 1024 * 1024 &&
+//                 request.resource.contentType.matches('images/.*');
+
 const Profile = () => {
   const fileRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
