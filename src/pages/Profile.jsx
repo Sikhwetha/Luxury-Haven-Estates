@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
-import {updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserSuccess} from"../redux/app/user/useSlice"
+import {updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserSuccess, SignOutUserFailure, SignOutUserStart} from"../redux/app/user/useSlice"
 import { useDispatch } from 'react-redux';
 
 // Replace with your actual Redux action types and creators
@@ -107,6 +107,31 @@ const Profile = () => {
 
   }
 
+  let access_token = ''; // Initialize with an appropriate value or an empty string
+
+  const handleSignOut = async () => {
+    try {
+      dispatch(SignOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+  
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+  
+      // Assuming the access_token is part of the response data
+      access_token = data.access_token;
+  
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      console.error('Error signing out:', error);
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+  
+  
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className="text-3xl font-semibold text-center">Profile</h1>
@@ -172,7 +197,7 @@ const Profile = () => {
       </form>
       <div className="flex justify-between mt-5">
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete Account</span>
-        <span className='text-red-700 cursor-pointer'>Sign out</span>
+        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
       </div>
       <p className='text-red-700 mt-3'>{error ? error : ''}</p>
       <p className='text-green-700 mt-3'>{isUpdateSuccess ? 'User is updated successfully!' : ''}</p>
