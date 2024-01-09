@@ -109,8 +109,8 @@ export default function CreatingListing() {
                         />
                         <button className='p-2 text-green-500 border rounded uppercase hover:shadow-lg disabled:opacity-80'>Upload</button>
                     </div>
+                <button className='p-3  bg-slate-600  text-white rounded-lg uppercase hover:opacity-95'>Create listing</button>
                 </div>
-                <button className='p-3 h-11 bg-slate-600  text-white rounded-lg uppercase hover:opacity-95'>Create listing</button>
             </div>           
          </div>
             
