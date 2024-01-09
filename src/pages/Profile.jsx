@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase';
 import {updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserSuccess, SignOutUserFailure, SignOutUserStart} from"../redux/app/user/useSlice"
 import { useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 // Replace with your actual Redux action types and creators
 // const UPDATE_AVATAR = 'UPDATE_AVATAR';
@@ -193,7 +194,9 @@ const Profile = () => {
           className='bg-slate-700 text-white p-3 uppercase hover:opacity-75 disabled:opacity-80'>
           {loading ? 'Loadingg...' : 'Update'}
         </button>
-
+        <Link className='bg-green-600 text-white p-2 uppercase text-center hover:opacity-95' to={"/create-listing"}>
+          Create Listing
+        </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete Account</span>
