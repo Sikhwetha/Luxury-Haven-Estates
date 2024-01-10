@@ -6,9 +6,7 @@ import {updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure
 import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom'
 
-// Replace with your actual Redux action types and creators
-// const UPDATE_AVATAR = 'UPDATE_AVATAR';
-// const updateAvatar = (avatarURL) => ({ type: UPDATE_AVATAR, payload: avatarURL });
+
 
 // allow read;
 // allow write: if request.resource.size < 2 * 1024 * 1024 &&
